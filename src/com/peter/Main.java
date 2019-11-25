@@ -2,6 +2,7 @@ package com.peter;
 
 import com.peter.leetcode.LongestPrefix;
 import com.peter.leetcode.NoRepeatString;
+import com.peter.leetcode.StringArrange;
 
 public class Main {
 
@@ -14,7 +15,6 @@ public class Main {
         String result = LongestPrefix.longestCommonPrefix(testCase1);
         System.out.println("result : " + result);
 
-        result = LongestPrefix.longestCommonPrefix(testCase2);
         System.out.println("result : " + result);
     }
 }
