@@ -6,9 +6,10 @@ import java.util.List;
 public class IPSelector {
 
     public static void main(String[] args) {
-        List<String> result = restoreIpAddresses("911251211");
-        for (String str: result) {
-            System.out.println("IP : " + str);
+//        List<String> result = restoreIpAddresses("0000");
+        getMyIpAddress("", "0000");
+        for (int i = 0; i < res.size(); i++) {
+            System.out.println(res.get(i));
         }
 
     }
@@ -66,5 +67,48 @@ public class IPSelector {
             }
         }
         return;
+    }
+
+    private static void getMyIpAddress(String ipAddress, String s) {
+        if (s.length() == 0) {
+            return;
+        }
+        int n = 0;
+        for (int i = 0; i < ipAddress.length(); i++) {
+            if (ipAddress.charAt(i) =='.') {
+                n++;
+            }
+        }
+
+        if (n == 3) {
+            if (ipAddress.length() - 3 < s.length()) {
+                String lastString = s.substring(ipAddress.length() - 3);
+                if (lastString.length() >= 4) {
+                    return;
+                }
+                if (lastString.length() != 1 && lastString.charAt(0) == '0') {
+                    return;
+                }
+                if (Integer.parseInt(lastString) >= 0 && Integer.parseInt(lastString) <= 255) {
+                    res.add(ipAddress + lastString);
+                } else {
+                    return;
+                }
+            }
+        }
+
+        String[] tempArray = new String[3];
+        for (int i = 0; i < 3; i++) {
+            if (ipAddress.length() - n + i + 1 <= s.length()) {
+//                    String temp = s.substring(ipAddress.length() - n + i + 1);
+                tempArray[i] = s.substring(ipAddress.length() - n, ipAddress.length() - n +i +1);
+                if (tempArray[i].length() != 1 && tempArray[i].charAt(0) == '0') {
+                    continue;
+                }
+                if (Integer.valueOf(tempArray[i]) >= 0 && Integer.valueOf(tempArray[i]) <= 255) {
+                    getMyIpAddress(ipAddress + tempArray[i] + ".", s);
+                }
+            }
+        }
     }
 }
