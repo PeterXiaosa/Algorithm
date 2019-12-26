@@ -1,4 +1,4 @@
-package com.peter.leetcode;
+package com.peter.leetcode.string;
 
 import java.util.*;
 
